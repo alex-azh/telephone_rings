@@ -16,5 +16,18 @@ namespace Telephone_Ring
         {
             InitializeComponent();
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            //при успешной авторизации запихнуть код:
+            bool auth_true = true;
+            if (auth_true)
+            {
+                detalization f2 = new detalization();
+                f2.Show();
+                this.Hide();
+            }
+
+        }
     }
 }
