@@ -1,0 +1,12 @@
+C:\Users\prog\Source\Repos\telephone_rings2\bin\Debug\Telephone_Ring.exe.config
+C:\Users\prog\Source\Repos\telephone_rings2\bin\Debug\Telephone_Ring.exe
+C:\Users\prog\Source\Repos\telephone_rings2\bin\Debug\Telephone_Ring.pdb
+C:\Users\prog\Source\Repos\telephone_rings2\obj\Debug\Telephone_Ring.csprojAssemblyReference.cache
+C:\Users\prog\Source\Repos\telephone_rings2\obj\Debug\Telephone_Ring.Abonents.resources
+C:\Users\prog\Source\Repos\telephone_rings2\obj\Debug\Telephone_Ring.detalization.resources
+C:\Users\prog\Source\Repos\telephone_rings2\obj\Debug\Telephone_Ring.Form1.resources
+C:\Users\prog\Source\Repos\telephone_rings2\obj\Debug\Telephone_Ring.Properties.Resources.resources
+C:\Users\prog\Source\Repos\telephone_rings2\obj\Debug\Telephone_Ring.csproj.GenerateResource.cache
+C:\Users\prog\Source\Repos\telephone_rings2\obj\Debug\Telephone_Ring.csproj.CoreCompileInputs.cache
+C:\Users\prog\Source\Repos\telephone_rings2\obj\Debug\Telephone_Ring.exe
+C:\Users\prog\Source\Repos\telephone_rings2\obj\Debug\Telephone_Ring.pdb
