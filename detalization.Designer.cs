@@ -142,7 +142,7 @@
             // 
             // txt_inn
             // 
-            this.txt_inn.Location = new System.Drawing.Point(572, 22);
+            this.txt_inn.Location = new System.Drawing.Point(572, 19);
             this.txt_inn.Name = "txt_inn";
             this.txt_inn.Size = new System.Drawing.Size(130, 22);
             this.txt_inn.TabIndex = 22;
