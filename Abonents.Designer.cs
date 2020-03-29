@@ -47,7 +47,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 26);
+            this.label1.Location = new System.Drawing.Point(12, 12);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(42, 17);
             this.label1.TabIndex = 0;
@@ -56,7 +56,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(12, 54);
+            this.label2.Location = new System.Drawing.Point(12, 40);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(72, 17);
             this.label2.TabIndex = 1;
@@ -65,7 +65,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(12, 106);
+            this.label3.Location = new System.Drawing.Point(12, 66);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(52, 17);
             this.label3.TabIndex = 2;
@@ -74,7 +74,7 @@
             // txt_phone
             // 
             this.txt_phone.AutoSize = true;
-            this.txt_phone.Location = new System.Drawing.Point(12, 80);
+            this.txt_phone.Location = new System.Drawing.Point(84, 40);
             this.txt_phone.Name = "txt_phone";
             this.txt_phone.Size = new System.Drawing.Size(0, 17);
             this.txt_phone.TabIndex = 5;
@@ -82,7 +82,7 @@
             // txt_address
             // 
             this.txt_address.AutoSize = true;
-            this.txt_address.Location = new System.Drawing.Point(12, 132);
+            this.txt_address.Location = new System.Drawing.Point(60, 66);
             this.txt_address.Name = "txt_address";
             this.txt_address.Size = new System.Drawing.Size(198, 17);
             this.txt_address.TabIndex = 6;
@@ -100,12 +100,12 @@
             this.time_day,
             this.summary_sale,
             this.cost});
-            this.tbl_abon_rings.Location = new System.Drawing.Point(3, 152);
+            this.tbl_abon_rings.Location = new System.Drawing.Point(3, 100);
             this.tbl_abon_rings.Name = "tbl_abon_rings";
             this.tbl_abon_rings.ReadOnly = true;
             this.tbl_abon_rings.RowHeadersWidth = 51;
             this.tbl_abon_rings.RowTemplate.Height = 24;
-            this.tbl_abon_rings.Size = new System.Drawing.Size(1021, 530);
+            this.tbl_abon_rings.Size = new System.Drawing.Size(1021, 582);
             this.tbl_abon_rings.TabIndex = 17;
             // 
             // City_name
@@ -159,7 +159,7 @@
             // txt_inn
             // 
             this.txt_inn.AutoSize = true;
-            this.txt_inn.Location = new System.Drawing.Point(60, 26);
+            this.txt_inn.Location = new System.Drawing.Point(60, 12);
             this.txt_inn.Name = "txt_inn";
             this.txt_inn.Size = new System.Drawing.Size(0, 17);
             this.txt_inn.TabIndex = 18;

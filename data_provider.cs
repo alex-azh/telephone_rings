@@ -65,8 +65,9 @@ namespace Telephone_Ring
             using (var lo_conn = new NpgsqlConnection(_sConnStr))
             {
                 lo_conn.Open();
-                using (var lo_cmd = new NpgsqlCommand(@"Select * from t_Abonents where inn='" + inn + "'", lo_conn))
+                using (var lo_cmd = new NpgsqlCommand(@"Select * from t_Abonents where inn=@inn", lo_conn))
                 {
+                    lo_cmd.Parameters.AddWithValue("@inn", inn);
                     var lo_dr = lo_cmd.ExecuteReader();
 
                     if (lo_dr.HasRows)
@@ -82,9 +83,33 @@ namespace Telephone_Ring
             return dt_Abon;
         }
 
-        public DataTable update()
+        public DataTable abon_rings(string inn)
         {
-            DataTable dtUsers = new DataTable("Rings");
+            DataTable dt_Abon = new DataTable("Info_abon");
+            using (var lo_conn = new NpgsqlConnection(_sConnStr))
+            {
+                lo_conn.Open();
+                using (var lo_cmd = new NpgsqlCommand(@"Select * from t_Rings where AID=(select AID from t_Abonents where inn=@inn)", lo_conn))
+                {
+                    lo_cmd.Parameters.AddWithValue("@inn", inn);
+                    var lo_dr = lo_cmd.ExecuteReader();
+
+                    if (lo_dr.HasRows)
+                    {
+                        dt_Abon.Load(lo_dr);
+                    }
+                    else
+                    {
+                        // вызвать исключение и поймать его в пользовательском интерфейсе
+                    }
+                }
+            }
+            return dt_Abon;
+        }
+
+            public DataTable update()
+        {
+            DataTable dtRings = new DataTable("Rings");
             using (var lo_conn = new NpgsqlConnection(_sConnStr))
             {
                 lo_conn.Open();
@@ -94,7 +119,7 @@ namespace Telephone_Ring
 
                     if (lo_dr.HasRows)
                     {
-                        dtUsers.Load(lo_dr);
+                        dtRings.Load(lo_dr);
                     }
                     else
                     {
@@ -102,7 +127,7 @@ namespace Telephone_Ring
                     }
                 }
             }
-            return dtUsers;
+            return dtRings;
         }
 
 

@@ -32,7 +32,13 @@ namespace Telephone_Ring
                 f2.txt_inn.Text = Convert.ToString(lo_row["inn"]);
                 f2.txt_phone.Text = Convert.ToString(lo_row["phone"]);
             }
+            var dtAbon_rings = dp.abon_rings(txt_inn.Text);
+            foreach (DataRow lo_row in dtAbon_rings.Rows)
+            {
+                f2.tbl_abon_rings.Rows.Add(lo_row["City_name"], lo_row["datetime"], lo_row["minutes"], lo_row["time_of_day"], lo_row["sale"], lo_row["cost"]);
+            }
             f2.ShowDialog();
+
         }
     
 
