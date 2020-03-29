@@ -28,22 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.btn_auth = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.txt_login = new System.Windows.Forms.TextBox();
+            this.txt_pass = new System.Windows.Forms.TextBox();
+            this.btn_auth = new System.Windows.Forms.Button();
             this.SuspendLayout();
-            // 
-            // btn_auth
-            // 
-            this.btn_auth.Location = new System.Drawing.Point(26, 174);
-            this.btn_auth.Name = "btn_auth";
-            this.btn_auth.Size = new System.Drawing.Size(147, 31);
-            this.btn_auth.TabIndex = 15;
-            this.btn_auth.Text = "Авторизация";
-            this.btn_auth.UseVisualStyleBackColor = true;
-            this.btn_auth.Click += new System.EventHandler(this.button1_Click);
             // 
             // label1
             // 
@@ -63,43 +53,55 @@
             this.label2.TabIndex = 17;
             this.label2.Text = "Пароль";
             // 
-            // textBox1
+            // txt_login
             // 
-            this.textBox1.Location = new System.Drawing.Point(26, 56);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(147, 22);
-            this.textBox1.TabIndex = 18;
+            this.txt_login.Location = new System.Drawing.Point(26, 56);
+            this.txt_login.Name = "txt_login";
+            this.txt_login.Size = new System.Drawing.Size(236, 22);
+            this.txt_login.TabIndex = 18;
             // 
-            // textBox2
+            // txt_pass
             // 
-            this.textBox2.Location = new System.Drawing.Point(26, 126);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(147, 22);
-            this.textBox2.TabIndex = 19;
+            this.txt_pass.Location = new System.Drawing.Point(26, 126);
+            this.txt_pass.Name = "txt_pass";
+            this.txt_pass.PasswordChar = '•';
+            this.txt_pass.Size = new System.Drawing.Size(236, 22);
+            this.txt_pass.TabIndex = 19;
+            // 
+            // btn_auth
+            // 
+            this.btn_auth.Location = new System.Drawing.Point(26, 170);
+            this.btn_auth.Name = "btn_auth";
+            this.btn_auth.Size = new System.Drawing.Size(236, 35);
+            this.btn_auth.TabIndex = 20;
+            this.btn_auth.Text = "Авторизация";
+            this.btn_auth.UseVisualStyleBackColor = true;
+            this.btn_auth.Click += new System.EventHandler(this.btn_auth_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(201, 217);
-            this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.textBox1);
+            this.ClientSize = new System.Drawing.Size(287, 217);
+            this.Controls.Add(this.btn_auth);
+            this.Controls.Add(this.txt_pass);
+            this.Controls.Add(this.txt_login);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.btn_auth);
             this.Name = "Form1";
             this.Text = "Авторизация";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Form1_FormClosed);
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-        private System.Windows.Forms.Button btn_auth;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox txt_login;
+        private System.Windows.Forms.TextBox txt_pass;
+        private System.Windows.Forms.Button btn_auth;
     }
 }
 

@@ -19,15 +19,34 @@ namespace Telephone_Ring
 
         private void button1_Click(object sender, EventArgs e)
         {
-            //при успешной авторизации запихнуть код:
-            bool auth_true = true;
-            if (auth_true)
-            {
-                detalization f2 = new detalization();
-                f2.Show();
-                this.Hide();
-            }
+            
 
+        }
+
+        private void btn_auth_Click(object sender, EventArgs e)
+        {
+            var dp = new data_provider();
+            if (!(txt_login.Text == "" || txt_pass.Text == ""))
+            {
+                byte[] cp = dp.CalcHash(txt_pass.Text);
+                if (dp.authorization(txt_login.Text, cp))
+                {
+                    detalization f2 = new detalization();
+                    f2.Show();
+                    this.Hide();
+                }
+                else
+                { MessageBox.Show("Невалидный login or pass"); }
+            }
+            else
+            {
+                MessageBox.Show("Не оставляйте поля пустыми!");
+            }
+        }
+
+        private void Form1_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Application.Exit();
         }
     }
 }
