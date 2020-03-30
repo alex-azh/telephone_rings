@@ -107,7 +107,51 @@ namespace Telephone_Ring
             return dt_Abon;
         }
 
-            public DataTable update()
+        public string get_id_abon(string iv_tab_name, string iv_pref)
+        {
+            string lv_id;
+            using (var lo_conn = new NpgsqlConnection(_sConnStr))
+            {
+                lo_conn.Open();
+                using (var lo_cmd = new NpgsqlCommand(@"get_id", lo_conn))
+                {
+                    lo_cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                    lo_cmd.Parameters.AddWithValue("@iv_table_name", iv_tab_name);
+                    lo_cmd.Parameters.AddWithValue("@iv_column_name", "uid");
+                    lo_cmd.Parameters.AddWithValue("@iv_pref", iv_pref);
+                    lv_id = (string)lo_cmd.ExecuteScalar();
+
+                    // обработать исключение и поймать его в пользовательском интерфейсе
+                }
+            }
+            return lv_id;
+        }
+
+        public void reg_abon(ref Stack<string> inn, ref Stack<string> phone,ref Stack<string> address) //n -будущих записей
+        {
+            Random r = new Random();
+            var db = new data_base();
+            //var lv_id = get_id_abon("t_Abonents", "A");
+                using (var lo_conn = new NpgsqlConnection(_sConnStr))
+                {
+                    lo_conn.Open();
+                    string lv_sql = @"insert into t_Abonents values (@AID, @inn, @phone, @address)";
+                    using (var lo_cmd = new NpgsqlCommand(lv_sql, lo_conn))
+                    {
+                        lo_cmd.Parameters.AddWithValue("@AID", "A"+r.Next(1000).ToString());
+                        lo_cmd.Parameters.AddWithValue("@inn", inn.Pop().ToString());
+                        lo_cmd.Parameters.AddWithValue("@phone", phone.Pop().ToString());
+                        lo_cmd.Parameters.AddWithValue("@address", address.Pop().ToString());
+                        if (lo_cmd.ExecuteNonQuery() != 1)
+                        {
+                            // вызвать исключение и поймать его в пользовательском интерфейсе
+                        }
+                    }
+                }
+
+        }
+
+        public DataTable update()
         {
             DataTable dtRings = new DataTable("Rings");
             using (var lo_conn = new NpgsqlConnection(_sConnStr))

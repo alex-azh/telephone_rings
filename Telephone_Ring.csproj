@@ -86,6 +86,7 @@
     <Compile Include="Abonents.Designer.cs">
       <DependentUpon>Abonents.cs</DependentUpon>
     </Compile>
+    <Compile Include="data_base.cs" />
     <Compile Include="data_provider.cs" />
     <Compile Include="detalization.cs">
       <SubType>Form</SubType>

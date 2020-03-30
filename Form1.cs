@@ -48,5 +48,12 @@ namespace Telephone_Ring
         {
             Application.Exit();
         }
+
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+            detalization f2 = new detalization();
+            f2.Show();
+            this.Hide();
+        }
     }
 }

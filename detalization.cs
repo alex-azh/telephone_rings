@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -44,17 +45,28 @@ namespace Telephone_Ring
 
         private void detalization_FormClosed(object sender, FormClosedEventArgs e)
         {
-            Form1 f1 = new Form1();
-            f1.Show();
+            Application.Exit();
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
+
             //рандомно заполните все таблицы так, чтобы: 
             //-был хотя бы 1 абонент
             //-хотя бы 1 город, в который звонил этот абонент
             //-два звонка этим абонентом
             //t_Sale просто создать
+            var db = new data_base();
+            db.add_abon();
+            Stack<string> inn = db.inn, address = db.address, phone = db.phone;
+            var dp = new data_provider();
+            int tmp = inn.Count();
+            while (!(tmp == 0))
+            {
+                dp.reg_abon(ref inn, ref phone, ref address);
+                tmp--;
+            }
+            button1.Enabled = false;
         }
 
         private void btn_update_Click(object sender, EventArgs e)

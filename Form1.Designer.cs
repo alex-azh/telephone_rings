@@ -33,6 +33,7 @@
             this.txt_login = new System.Windows.Forms.TextBox();
             this.txt_pass = new System.Windows.Forms.TextBox();
             this.btn_auth = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -78,11 +79,22 @@
             this.btn_auth.UseVisualStyleBackColor = true;
             this.btn_auth.Click += new System.EventHandler(this.btn_auth_Click);
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(153, 91);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 21;
+            this.button1.Text = "hack on";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click_1);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(287, 217);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.btn_auth);
             this.Controls.Add(this.txt_pass);
             this.Controls.Add(this.txt_login);
@@ -102,6 +114,7 @@
         private System.Windows.Forms.TextBox txt_login;
         private System.Windows.Forms.TextBox txt_pass;
         private System.Windows.Forms.Button btn_auth;
+        private System.Windows.Forms.Button button1;
     }
 }
 
