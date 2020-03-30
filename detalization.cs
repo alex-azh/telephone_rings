@@ -65,24 +65,18 @@ namespace Telephone_Ring
 
         private void btn_update_Click(object sender, EventArgs e)
         {
-            tbl_rings.Rows.Clear();
             var dp = new data_provider();
+            tbl_rings.Rows.Clear();
             var dtRings = dp.update();
             foreach (DataRow lo_row in dtRings.Rows)
             {
-                tbl_rings.Rows.Add(lo_row["City_name"],lo_row["datetime"], lo_row["minutes"], lo_row["time_of_day"], lo_row["sale"], lo_row["cost"]);
+                tbl_rings.Rows.Add(lo_row["inn"], lo_row["City_name"],lo_row["datetime"], lo_row["minutes"], lo_row["time_of_day"], lo_row["sale"], lo_row["cost"]);
             }
         }
 
         private void detalization_Load(object sender, EventArgs e)
         {
-            tbl_rings.Rows.Clear();
-            var dp = new data_provider();
-            var dtRings = dp.update();
-            foreach (DataRow lo_row in dtRings.Rows)
-            {
-                tbl_rings.Rows.Add(lo_row["City_name"], lo_row["datetime"], lo_row["minutes"], lo_row["time_of_day"], lo_row["sale"], lo_row["cost"]);
-            }
+            btn_update_Click(null, null);
         }
     }
 }

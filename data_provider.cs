@@ -83,6 +83,21 @@ namespace Telephone_Ring
             return dt_Abon;
         }
 
+        public string abon_inn(string AID)
+        {
+            string otvet = "";
+            using (var lo_conn = new NpgsqlConnection(_sConnStr))
+            {
+                lo_conn.Open();
+                using (var lo_cmd = new NpgsqlCommand(@"Select inn from t_Abonents where AID=@AID", lo_conn))
+                {
+                    lo_cmd.Parameters.AddWithValue("@AID", AID);
+                    otvet = (string)lo_cmd.ExecuteScalar();
+                }
+            }
+            return otvet;
+        }
+
         public DataTable abon_rings(string inn)
         {
             DataTable dt_Abon = new DataTable("Info_abon");
@@ -130,7 +145,6 @@ namespace Telephone_Ring
         public void reg_abon(ref Stack<string> inn, ref Stack<string> phone,ref Stack<string> address) //n -будущих записей
         {
             Random r = new Random();
-            var db = new data_base();
             //var lv_id = get_id_abon("t_Abonents", "A");
                 using (var lo_conn = new NpgsqlConnection(_sConnStr))
                 {
@@ -158,10 +172,12 @@ namespace Telephone_Ring
             using (var lo_conn = new NpgsqlConnection(_sConnStr))
             {
                 lo_conn.Open();
-                using (var lo_cmd = new NpgsqlCommand(@"Select * from t_Rings", lo_conn))
+                using (var lo_cmd = new NpgsqlCommand
+                    (@"select inn, City_name, datetime, minutes, time_of_day, sale, cost from t_Rings
+                        INNER JOIN t_Abonents tA on t_Rings.AID = tA.AID", lo_conn))
                 {
                     var lo_dr = lo_cmd.ExecuteReader();
-
+                    
                     if (lo_dr.HasRows)
                     {
                         dtRings.Load(lo_dr);

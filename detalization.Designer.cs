@@ -29,17 +29,18 @@
         private void InitializeComponent()
         {
             this.tbl_rings = new System.Windows.Forms.DataGridView();
+            this.btn_update = new System.Windows.Forms.Button();
+            this.btn_inn = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
+            this.txt_inn = new System.Windows.Forms.TextBox();
+            this.button1 = new System.Windows.Forms.Button();
+            this.inn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.City_name = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.datetime = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.minutes = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.time_day = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.summary_sale = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cost = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.btn_update = new System.Windows.Forms.Button();
-            this.btn_inn = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
-            this.txt_inn = new System.Windows.Forms.TextBox();
-            this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.tbl_rings)).BeginInit();
             this.SuspendLayout();
             // 
@@ -49,6 +50,7 @@
             | System.Windows.Forms.AnchorStyles.Left)));
             this.tbl_rings.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.tbl_rings.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.inn,
             this.City_name,
             this.datetime,
             this.minutes,
@@ -62,6 +64,60 @@
             this.tbl_rings.RowTemplate.Height = 24;
             this.tbl_rings.Size = new System.Drawing.Size(1021, 482);
             this.tbl_rings.TabIndex = 16;
+            // 
+            // btn_update
+            // 
+            this.btn_update.Location = new System.Drawing.Point(12, 15);
+            this.btn_update.Name = "btn_update";
+            this.btn_update.Size = new System.Drawing.Size(112, 37);
+            this.btn_update.TabIndex = 17;
+            this.btn_update.Text = "Обновить";
+            this.btn_update.UseVisualStyleBackColor = true;
+            this.btn_update.Click += new System.EventHandler(this.btn_update_Click);
+            // 
+            // btn_inn
+            // 
+            this.btn_inn.Location = new System.Drawing.Point(708, 12);
+            this.btn_inn.Name = "btn_inn";
+            this.btn_inn.Size = new System.Drawing.Size(258, 37);
+            this.btn_inn.TabIndex = 21;
+            this.btn_inn.Text = "Вывести инф-ию об абоненте";
+            this.btn_inn.UseVisualStyleBackColor = true;
+            this.btn_inn.Click += new System.EventHandler(this.btn_inn_Click);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(524, 22);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(42, 17);
+            this.label1.TabIndex = 19;
+            this.label1.Text = "ИНН:";
+            // 
+            // txt_inn
+            // 
+            this.txt_inn.Location = new System.Drawing.Point(572, 19);
+            this.txt_inn.Name = "txt_inn";
+            this.txt_inn.Size = new System.Drawing.Size(130, 22);
+            this.txt_inn.TabIndex = 22;
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(153, 15);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(197, 37);
+            this.button1.TabIndex = 23;
+            this.button1.Text = "Заполнить БД рандомно";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // inn
+            // 
+            this.inn.HeaderText = "ИНН";
+            this.inn.MinimumWidth = 6;
+            this.inn.Name = "inn";
+            this.inn.ReadOnly = true;
+            this.inn.Width = 125;
             // 
             // City_name
             // 
@@ -111,52 +167,6 @@
             this.cost.ReadOnly = true;
             this.cost.Width = 125;
             // 
-            // btn_update
-            // 
-            this.btn_update.Location = new System.Drawing.Point(12, 15);
-            this.btn_update.Name = "btn_update";
-            this.btn_update.Size = new System.Drawing.Size(112, 37);
-            this.btn_update.TabIndex = 17;
-            this.btn_update.Text = "Обновить";
-            this.btn_update.UseVisualStyleBackColor = true;
-            this.btn_update.Click += new System.EventHandler(this.btn_update_Click);
-            // 
-            // btn_inn
-            // 
-            this.btn_inn.Location = new System.Drawing.Point(708, 12);
-            this.btn_inn.Name = "btn_inn";
-            this.btn_inn.Size = new System.Drawing.Size(258, 37);
-            this.btn_inn.TabIndex = 21;
-            this.btn_inn.Text = "Вывести инф-ию об абоненте";
-            this.btn_inn.UseVisualStyleBackColor = true;
-            this.btn_inn.Click += new System.EventHandler(this.btn_inn_Click);
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(524, 22);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(42, 17);
-            this.label1.TabIndex = 19;
-            this.label1.Text = "ИНН:";
-            // 
-            // txt_inn
-            // 
-            this.txt_inn.Location = new System.Drawing.Point(572, 19);
-            this.txt_inn.Name = "txt_inn";
-            this.txt_inn.Size = new System.Drawing.Size(130, 22);
-            this.txt_inn.TabIndex = 22;
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(153, 15);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(197, 37);
-            this.button1.TabIndex = 23;
-            this.button1.Text = "Добавить в БД записи";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
             // detalization
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -181,16 +191,17 @@
         #endregion
 
         public System.Windows.Forms.DataGridView tbl_rings;
-        public System.Windows.Forms.DataGridViewTextBoxColumn City_name;
-        public System.Windows.Forms.DataGridViewTextBoxColumn datetime;
-        public System.Windows.Forms.DataGridViewTextBoxColumn minutes;
-        public System.Windows.Forms.DataGridViewTextBoxColumn time_day;
-        public System.Windows.Forms.DataGridViewTextBoxColumn summary_sale;
-        public System.Windows.Forms.DataGridViewTextBoxColumn cost;
         private System.Windows.Forms.Button btn_update;
         private System.Windows.Forms.Button btn_inn;
         private System.Windows.Forms.Label label1;
         public System.Windows.Forms.TextBox txt_inn;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn inn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn City_name;
+        private System.Windows.Forms.DataGridViewTextBoxColumn datetime;
+        private System.Windows.Forms.DataGridViewTextBoxColumn minutes;
+        private System.Windows.Forms.DataGridViewTextBoxColumn time_day;
+        private System.Windows.Forms.DataGridViewTextBoxColumn summary_sale;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cost;
     }
 }
