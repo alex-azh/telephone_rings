@@ -23,19 +23,27 @@ namespace Telephone_Ring
             
             var dp = new data_provider();
             Abonents f2 = new Abonents();
-            var dtAbon_info = dp.info_abon(txt_inn.Text);
-            foreach (DataRow lo_row in dtAbon_info.Rows)
+            try
             {
-                f2.txt_address.Text = Convert.ToString(lo_row["address"]);
-                f2.txt_inn.Text = Convert.ToString(lo_row["inn"]);
-                f2.txt_phone.Text = Convert.ToString(lo_row["phone"]);
+                var dtAbon_info = dp.info_abon(txt_inn.Text);
+                foreach (DataRow lo_row in dtAbon_info.Rows)
+                {
+                    f2.txt_address.Text = Convert.ToString(lo_row["address"]);
+                    f2.txt_inn.Text = Convert.ToString(lo_row["inn"]);
+                    f2.txt_phone.Text = Convert.ToString(lo_row["phone"]);
+                }
+                var dtAbon_rings = dp.abon_rings(txt_inn.Text);
+                foreach (DataRow lo_row in dtAbon_rings.Rows)
+                {
+                    f2.tbl_abon_rings.Rows.Add(lo_row["City_name"], lo_row["datetime"], lo_row["minutes"], lo_row["time_of_day"], lo_row["sale"], lo_row["cost"]);
+                }
+                f2.ShowDialog();
             }
-            var dtAbon_rings = dp.abon_rings(txt_inn.Text);
-            foreach (DataRow lo_row in dtAbon_rings.Rows)
+            catch(Exception ex)
             {
-                f2.tbl_abon_rings.Rows.Add(lo_row["City_name"], lo_row["datetime"], lo_row["minutes"], lo_row["time_of_day"], lo_row["sale"], lo_row["cost"]);
+                MessageBox.Show(ex.Message, "Ошибка");
             }
-            f2.ShowDialog();
+                
 
         }
     
