@@ -138,6 +138,7 @@ namespace Telephone_Ring
                     string lv_sql = @"insert into t_Abonents values (@AID, @inn, @phone, @address)";
                     using (var lo_cmd = new NpgsqlCommand(lv_sql, lo_conn))
                     {
+                        //fiewkogew - добавить get_id для t_Abonents
                         lo_cmd.Parameters.AddWithValue("@AID", "A"+r.Next(1000).ToString());
                         lo_cmd.Parameters.AddWithValue("@inn", inn.Pop().ToString());
                         lo_cmd.Parameters.AddWithValue("@phone", phone.Pop().ToString());
