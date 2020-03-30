@@ -171,6 +171,7 @@
             this.Name = "detalization";
             this.Text = "Детализация переговоров";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.detalization_FormClosed);
+            this.Load += new System.EventHandler(this.detalization_Load);
             ((System.ComponentModel.ISupportInitialize)(this.tbl_rings)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

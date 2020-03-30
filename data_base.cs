@@ -32,16 +32,18 @@ namespace Telephone_Ring
             }
         }
 
-        public void add_abon()
+        public bool add_abon()
         {
             try
             {
+                int t_inn=0, t_ad=0, t_ph = 0;
                 using (StreamReader sr = new StreamReader(inn_path, System.Text.Encoding.Default))
                 {
                     string line;
                     while ((line = sr.ReadLine()) != null)
                     {
                         inn.Push(line);
+                        t_inn++;
                     }
                 }
                 using (StreamReader sr = new StreamReader(phone_path, System.Text.Encoding.Default))
@@ -50,6 +52,7 @@ namespace Telephone_Ring
                     while ((line = sr.ReadLine()) != null)
                     {
                         phone.Push(line);
+                        t_ph++;
                     }
                 }
                 using (StreamReader sr = new StreamReader(address_path, System.Text.Encoding.Default))
@@ -58,10 +61,15 @@ namespace Telephone_Ring
                     while ((line =sr.ReadLine()) != null)
                     {
                         address.Push(line);
+                        t_ad++;
                     }
                 }
+                if (!(inn.Count == 0 || address.Count == 0 || phone.Count == 0) &&(t_inn==t_ph&&t_inn==t_ad))
+                    return true;
+                else return false;
+
             }
-            catch { };
+            catch { return false; };
         }
 
 
