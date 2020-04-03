@@ -53,23 +53,6 @@ namespace Telephone_Ring
             Application.Exit();
         }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-            var db = new data_base();
-            if (db.add_abon())
-            {
-                Stack<string> inn = db.inn, address = db.address, phone = db.phone;
-                var dp = new data_provider();
-                int tmp = inn.Count();
-                while (!(tmp == 0))
-                {
-                    dp.reg_abon(ref inn, ref phone, ref address);
-                    tmp--;
-                }
-                //button1.Enabled = false;
-            }
-            else { MessageBox.Show("Файлы повреждены: не совпадает кол-во строк или файлы пусты."); }
-        }
 
         private void btn_update_Click(object sender, EventArgs e)
         {
