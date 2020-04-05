@@ -63,26 +63,29 @@ namespace Telephone_Ring
 
 
         public string t_Rings(string aid, string city, string datetime, string minutes)
-        {   //select adding('U0001','Москва','2001-02-16 14:38:40',12);
+        {   
             string result;
-            result = "select new_schema.adding('" + aid + "','" + city + "','" + datetime + "'," + minutes + ")";
+            result = "select adding('" + aid + "','" + city + "','" + datetime + "'," + minutes + ")";
             return result;
         }
 
         public string adding()
         {
-            int i;
-            StreamReader a = new StreamReader("C:/Users/maser/Desktop/City.txt");
-            string[] City = new string[322];
+            int i; string[] City = new string[322]; string[] aid = new string[150];
+
             i = 0;
-            while (!a.EndOfStream)
+            using (StreamReader sr = new StreamReader("C:/Users/prog/Desktop/Проект/Города/City.txt", System.Text.Encoding.Default))
             {
-                City[i] = a.ReadLine();
-                i++;
+                string line;
+                while ((line = sr.ReadLine()) != null)
+                {
+                    City[i] = line;
+                    i++;
+                }
             }
 
-            StreamReader b = new StreamReader("C:/Users/maser/Desktop/id.txt");
-            string[] aid = new string[150];
+
+            StreamReader b = new StreamReader("C:/Users/prog/Desktop/Проект/Абоненты/id.txt");
             i = 0;
             while (!b.EndOfStream)
             {

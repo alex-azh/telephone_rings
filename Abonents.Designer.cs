@@ -105,7 +105,7 @@
             this.tbl_abon_rings.ReadOnly = true;
             this.tbl_abon_rings.RowHeadersWidth = 51;
             this.tbl_abon_rings.RowTemplate.Height = 24;
-            this.tbl_abon_rings.Size = new System.Drawing.Size(1021, 582);
+            this.tbl_abon_rings.Size = new System.Drawing.Size(1021, 1155);
             this.tbl_abon_rings.TabIndex = 17;
             // 
             // City_name
@@ -168,7 +168,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1024, 442);
+            this.ClientSize = new System.Drawing.Size(1024, 573);
             this.Controls.Add(this.txt_inn);
             this.Controls.Add(this.tbl_abon_rings);
             this.Controls.Add(this.txt_address);
@@ -176,6 +176,7 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Name = "Abonents";
             this.Text = "Абоненты";
             this.Load += new System.EventHandler(this.Abonents_Load);
