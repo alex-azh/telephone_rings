@@ -177,6 +177,19 @@ namespace Telephone_Ring
 
         }
 
+        public void delete()
+        {
+            using (var lo_conn = new NpgsqlConnection(_sConnStr))
+            {
+                lo_conn.Open();
+
+                using (var lo_cmd = new NpgsqlCommand(@"DELETE FROM t_Rings WHERE (select count(*) from t_Rings)>0", lo_conn))
+                {
+                    lo_cmd.ExecuteNonQuery();
+                }
+            }
+        }
+
         public DataTable update()
         {
             DataTable dtRings = new DataTable("Rings");

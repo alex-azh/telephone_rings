@@ -28,12 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(detalization));
             this.tbl_rings = new System.Windows.Forms.DataGridView();
             this.btn_update = new System.Windows.Forms.Button();
             this.btn_inn = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.txt_inn = new System.Windows.Forms.TextBox();
-            this.button1 = new System.Windows.Forms.Button();
             this.inn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.City_name = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.datetime = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -41,7 +41,11 @@
             this.time_day = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.summary_sale = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cost = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.btn_delete = new System.Windows.Forms.Button();
+            this.btn_ring = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.tbl_rings)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // tbl_rings
@@ -63,7 +67,7 @@
             this.tbl_rings.ReadOnly = true;
             this.tbl_rings.RowHeadersWidth = 51;
             this.tbl_rings.RowTemplate.Height = 24;
-            this.tbl_rings.Size = new System.Drawing.Size(1200, 512);
+            this.tbl_rings.Size = new System.Drawing.Size(1060, 512);
             this.tbl_rings.TabIndex = 16;
             // 
             // btn_update
@@ -82,18 +86,21 @@
             this.btn_inn.Location = new System.Drawing.Point(708, 12);
             this.btn_inn.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btn_inn.Name = "btn_inn";
-            this.btn_inn.Size = new System.Drawing.Size(259, 37);
+            this.btn_inn.Size = new System.Drawing.Size(351, 37);
             this.btn_inn.TabIndex = 21;
-            this.btn_inn.Text = "Вывести инф-ию об абоненте";
+            this.btn_inn.Text = "Вывести информацию об абоненте";
             this.btn_inn.UseVisualStyleBackColor = true;
             this.btn_inn.Click += new System.EventHandler(this.btn_inn_Click);
             // 
             // label1
             // 
             this.label1.AutoSize = true;
+            this.label1.BackColor = System.Drawing.Color.White;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label1.ForeColor = System.Drawing.Color.White;
             this.label1.Location = new System.Drawing.Point(515, 25);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(42, 17);
+            this.label1.Size = new System.Drawing.Size(46, 17);
             this.label1.TabIndex = 19;
             this.label1.Text = "ИНН:";
             // 
@@ -104,17 +111,6 @@
             this.txt_inn.Name = "txt_inn";
             this.txt_inn.Size = new System.Drawing.Size(129, 22);
             this.txt_inn.TabIndex = 22;
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(161, 15);
-            this.button1.Margin = new System.Windows.Forms.Padding(4);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(295, 37);
-            this.button1.TabIndex = 23;
-            this.button1.Text = "Совершить звонок";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // inn
             // 
@@ -179,25 +175,61 @@
             this.cost.ReadOnly = true;
             this.cost.Width = 107;
             // 
+            // pictureBox1
+            // 
+            this.pictureBox1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox1.BackgroundImage")));
+            this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pictureBox1.Location = new System.Drawing.Point(0, 0);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(1062, 576);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.pictureBox1.TabIndex = 24;
+            this.pictureBox1.TabStop = false;
+            // 
+            // btn_delete
+            // 
+            this.btn_delete.Location = new System.Drawing.Point(339, 15);
+            this.btn_delete.Margin = new System.Windows.Forms.Padding(4);
+            this.btn_delete.Name = "btn_delete";
+            this.btn_delete.Size = new System.Drawing.Size(146, 37);
+            this.btn_delete.TabIndex = 25;
+            this.btn_delete.Text = "Очистить звонки";
+            this.btn_delete.UseVisualStyleBackColor = true;
+            this.btn_delete.Click += new System.EventHandler(this.btn_delete_Click);
+            // 
+            // btn_ring
+            // 
+            this.btn_ring.Location = new System.Drawing.Point(158, 15);
+            this.btn_ring.Margin = new System.Windows.Forms.Padding(4);
+            this.btn_ring.Name = "btn_ring";
+            this.btn_ring.Size = new System.Drawing.Size(146, 37);
+            this.btn_ring.TabIndex = 26;
+            this.btn_ring.Text = "Совершить звонок";
+            this.btn_ring.UseVisualStyleBackColor = true;
+            this.btn_ring.Click += new System.EventHandler(this.btn_ring_Click);
+            // 
             // detalization
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1182, 576);
-            this.Controls.Add(this.button1);
+            this.ClientSize = new System.Drawing.Size(1062, 576);
+            this.Controls.Add(this.btn_ring);
+            this.Controls.Add(this.btn_delete);
             this.Controls.Add(this.txt_inn);
             this.Controls.Add(this.btn_inn);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btn_update);
             this.Controls.Add(this.tbl_rings);
+            this.Controls.Add(this.pictureBox1);
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.MaximumSize = new System.Drawing.Size(1200, 800);
-            this.MinimumSize = new System.Drawing.Size(1200, 620);
+            this.MaximumSize = new System.Drawing.Size(1080, 800);
+            this.MinimumSize = new System.Drawing.Size(1080, 620);
             this.Name = "detalization";
             this.Text = "Детализация переговоров";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.detalization_FormClosed);
             this.Load += new System.EventHandler(this.detalization_Load);
             ((System.ComponentModel.ISupportInitialize)(this.tbl_rings)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -210,7 +242,6 @@
         private System.Windows.Forms.Button btn_inn;
         private System.Windows.Forms.Label label1;
         public System.Windows.Forms.TextBox txt_inn;
-        private System.Windows.Forms.Button button1;
         private System.Windows.Forms.DataGridViewTextBoxColumn inn;
         private System.Windows.Forms.DataGridViewTextBoxColumn City_name;
         private System.Windows.Forms.DataGridViewTextBoxColumn datetime;
@@ -218,5 +249,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn time_day;
         private System.Windows.Forms.DataGridViewTextBoxColumn summary_sale;
         private System.Windows.Forms.DataGridViewTextBoxColumn cost;
+        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.Button btn_delete;
+        private System.Windows.Forms.Button btn_ring;
     }
 }

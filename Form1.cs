@@ -58,7 +58,10 @@ namespace Telephone_Ring
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            this.Location = new Point(850, 400);
+            label1.Parent = pictureBox1;
+            label1.BackColor = Color.Transparent;
+            label2.Parent = pictureBox1;
+            label2.BackColor = Color.Transparent;
         }
     }
 }

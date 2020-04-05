@@ -67,16 +67,26 @@ namespace Telephone_Ring
 
         private void detalization_Load(object sender, EventArgs e)
         {
-            this.Location = new Point(500, 300);
+            label1.Parent = pictureBox1;
+            label1.BackColor = Color.Transparent;
             btn_update_Click(null, null);
+
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void btn_delete_Click(object sender, EventArgs e)
+        {
+            var dp = new data_provider();
+            dp.delete();
+            tbl_rings.Rows.Clear();
+        }
+
+        private void btn_ring_Click(object sender, EventArgs e)
         {
             var tg = new to_generate();
             string a = tg.adding();
             var dp = new data_provider();
             dp.new_call(a);
+            btn_update_Click(null, null);
         }
     }
 }
