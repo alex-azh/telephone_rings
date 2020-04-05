@@ -55,5 +55,10 @@ namespace Telephone_Ring
             f2.Show();
             this.Hide();
         }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            this.Location = new Point(850, 400);
+        }
     }
 }

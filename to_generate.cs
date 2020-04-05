@@ -1,15 +1,18 @@
 ﻿using System;
 using System.IO;
+using Npgsql;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Org.BouncyCastle.Security;
 
 namespace Telephone_Ring
 {
     class to_generate
     {
-        public static string datetime()
+        public string datetime()
         {
             Random rand = new Random();
             string year, month = "", day = "", hour = "", minute = "", second = "", result;
@@ -59,18 +62,14 @@ namespace Telephone_Ring
         }
 
 
-        public static string t_Rings(string aid, string city, string datetime, string minutes)
+        public string t_Rings(string aid, string city, string datetime, string minutes)
         {   //select adding('U0001','Москва','2001-02-16 14:38:40',12);
             string result;
-            result = "select adding('" + aid + "','" + city + "','" + datetime + "'," + minutes + ");";
-
-
-
+            result = "select new_schema.adding('" + aid + "','" + city + "','" + datetime + "'," + minutes + ")";
             return result;
-
         }
 
-        public static string adding()
+        public string adding()
         {
             int i;
             StreamReader a = new StreamReader("C:/Users/maser/Desktop/City.txt");
@@ -94,6 +93,8 @@ namespace Telephone_Ring
             Random rand = new Random();
             return (t_Rings(aid[rand.Next(0, 150)], City[rand.Next(0, 322)], datetime(), rand.Next(1, 41).ToString()));
         }
+
+
 
     }
 }

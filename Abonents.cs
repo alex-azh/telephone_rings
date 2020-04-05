@@ -19,7 +19,7 @@ namespace Telephone_Ring
 
         private void Abonents_Load(object sender, EventArgs e)
         {
-
+            this.Location = new Point(600, 200);
         }
     }
 }

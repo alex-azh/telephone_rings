@@ -40,6 +40,7 @@
             this.btn_inn = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.txt_inn = new System.Windows.Forms.TextBox();
+            this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.tbl_rings)).BeginInit();
             this.SuspendLayout();
             // 
@@ -56,12 +57,13 @@
             this.time_day,
             this.summary_sale,
             this.cost});
-            this.tbl_rings.Location = new System.Drawing.Point(-2, 65);
+            this.tbl_rings.Location = new System.Drawing.Point(-2, 53);
+            this.tbl_rings.Margin = new System.Windows.Forms.Padding(2);
             this.tbl_rings.Name = "tbl_rings";
             this.tbl_rings.ReadOnly = true;
             this.tbl_rings.RowHeadersWidth = 51;
             this.tbl_rings.RowTemplate.Height = 24;
-            this.tbl_rings.Size = new System.Drawing.Size(1021, 482);
+            this.tbl_rings.Size = new System.Drawing.Size(945, 416);
             this.tbl_rings.TabIndex = 16;
             // 
             // inn
@@ -122,9 +124,10 @@
             // 
             // btn_update
             // 
-            this.btn_update.Location = new System.Drawing.Point(12, 15);
+            this.btn_update.Location = new System.Drawing.Point(9, 12);
+            this.btn_update.Margin = new System.Windows.Forms.Padding(2);
             this.btn_update.Name = "btn_update";
-            this.btn_update.Size = new System.Drawing.Size(112, 37);
+            this.btn_update.Size = new System.Drawing.Size(84, 30);
             this.btn_update.TabIndex = 17;
             this.btn_update.Text = "Обновить";
             this.btn_update.UseVisualStyleBackColor = true;
@@ -132,9 +135,10 @@
             // 
             // btn_inn
             // 
-            this.btn_inn.Location = new System.Drawing.Point(708, 12);
+            this.btn_inn.Location = new System.Drawing.Point(531, 10);
+            this.btn_inn.Margin = new System.Windows.Forms.Padding(2);
             this.btn_inn.Name = "btn_inn";
-            this.btn_inn.Size = new System.Drawing.Size(258, 37);
+            this.btn_inn.Size = new System.Drawing.Size(194, 30);
             this.btn_inn.TabIndex = 21;
             this.btn_inn.Text = "Вывести инф-ию об абоненте";
             this.btn_inn.UseVisualStyleBackColor = true;
@@ -143,29 +147,43 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(515, 25);
+            this.label1.Location = new System.Drawing.Point(386, 20);
+            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(42, 17);
+            this.label1.Size = new System.Drawing.Size(34, 13);
             this.label1.TabIndex = 19;
             this.label1.Text = "ИНН:";
             // 
             // txt_inn
             // 
-            this.txt_inn.Location = new System.Drawing.Point(563, 22);
+            this.txt_inn.Location = new System.Drawing.Point(422, 18);
+            this.txt_inn.Margin = new System.Windows.Forms.Padding(2);
             this.txt_inn.Name = "txt_inn";
-            this.txt_inn.Size = new System.Drawing.Size(130, 22);
+            this.txt_inn.Size = new System.Drawing.Size(98, 20);
             this.txt_inn.TabIndex = 22;
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(121, 12);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(221, 30);
+            this.button1.TabIndex = 23;
+            this.button1.Text = "Совершить звонок";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // detalization
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(993, 547);
+            this.ClientSize = new System.Drawing.Size(941, 468);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.txt_inn);
             this.Controls.Add(this.btn_inn);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btn_update);
             this.Controls.Add(this.tbl_rings);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "detalization";
             this.Text = "Детализация переговоров";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.detalization_FormClosed);
@@ -190,5 +208,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn time_day;
         private System.Windows.Forms.DataGridViewTextBoxColumn summary_sale;
         private System.Windows.Forms.DataGridViewTextBoxColumn cost;
+        private System.Windows.Forms.Button button1;
     }
 }

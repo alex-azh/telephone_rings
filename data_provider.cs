@@ -15,7 +15,7 @@ namespace Telephone_Ring
         private readonly string _sConnStr = new NpgsqlConnectionStringBuilder
         {
             Host = "localhost",
-            Database = "rings",
+            Database = "new_database",
             Username = "postgres",
             Password = "postgres",
             MaxAutoPrepare = 10,
@@ -65,7 +65,7 @@ namespace Telephone_Ring
             using (var lo_conn = new NpgsqlConnection(_sConnStr))
             {
                 lo_conn.Open();
-                using (var lo_cmd = new NpgsqlCommand(@"Select * from t_Abonents where inn=@inn", lo_conn))
+                using (var lo_cmd = new NpgsqlCommand(@"Select * from new_schema.t_Abonents where inn=@inn", lo_conn))
                 {
                     lo_cmd.Parameters.AddWithValue("@inn", inn);
                     var lo_dr = lo_cmd.ExecuteReader();
@@ -89,7 +89,7 @@ namespace Telephone_Ring
             using (var lo_conn = new NpgsqlConnection(_sConnStr))
             {
                 lo_conn.Open();
-                using (var lo_cmd = new NpgsqlCommand(@"Select inn from t_Abonents where AID=@AID", lo_conn))
+                using (var lo_cmd = new NpgsqlCommand(@"Select inn from new_schema.t_Abonents where AID=@AID", lo_conn))
                 {
                     lo_cmd.Parameters.AddWithValue("@AID", AID);
                     otvet = (string)lo_cmd.ExecuteScalar();
@@ -104,7 +104,7 @@ namespace Telephone_Ring
             using (var lo_conn = new NpgsqlConnection(_sConnStr))
             {
                 lo_conn.Open();
-                using (var lo_cmd = new NpgsqlCommand(@"Select * from t_Rings where AID=(select AID from t_Abonents where inn=@inn)", lo_conn))
+                using (var lo_cmd = new NpgsqlCommand(@"Select * from new_schema.t_rings where AID=(select AID from new_schema.t_Abonents where inn=@inn)", lo_conn))
                 {
                     lo_cmd.Parameters.AddWithValue("@inn", inn);
                     var lo_dr = lo_cmd.ExecuteReader();
@@ -120,6 +120,17 @@ namespace Telephone_Ring
                 }
             }
             return dt_Abon;
+        }
+        public void new_call(string comanda)
+        {
+            using (var lo_conn = new NpgsqlConnection(_sConnStr))
+            {
+                lo_conn.Open();
+                using (var lo_cmd = new NpgsqlCommand(comanda, lo_conn))
+                {
+                    var lo_dr = lo_cmd.ExecuteNonQuery();
+                }
+            }
         }
 
         public string get_id_abon(string iv_tab_name, string iv_pref)
@@ -173,8 +184,8 @@ namespace Telephone_Ring
             {
                 lo_conn.Open();
                 using (var lo_cmd = new NpgsqlCommand
-                    (@"select inn, City_name, datetime, minutes, time_of_day, sale, cost from t_Rings
-                        INNER JOIN t_Abonents tA on t_Rings.AID = tA.AID", lo_conn))
+                    (@"select inn, City_name, datetime, minutes, time_of_day, sale, cost from new_schema.t_rings
+                        INNER JOIN new_schema.t_Abonents tA on new_schema.t_rings.AID = tA.AID order by tA.AID", lo_conn))
                 {
                     var lo_dr = lo_cmd.ExecuteReader();
                     
