@@ -31,7 +31,6 @@ namespace Telephone_Ring
                     day = rand.Next(1, 29).ToString();
 
 
-
             while (hour.Length != 2)
                 if (hour.Length == 1)
                     hour = "0" + hour;
@@ -39,13 +38,11 @@ namespace Telephone_Ring
                     hour = rand.Next(0, 24).ToString();
 
 
-
             while (minute.Length != 2)
                 if (minute.Length == 1)
                     minute = "0" + minute;
                 else
                     minute = rand.Next(0, 60).ToString();
-
 
 
             while (second.Length != 2)
@@ -71,30 +68,12 @@ namespace Telephone_Ring
 
         public string adding()
         {
-            int i; string[] City = new string[322]; string[] aid = new string[150];
-
-            i = 0;
-            using (StreamReader sr = new StreamReader("C:/Users/prog/Desktop/Проект/Города/City.txt", System.Text.Encoding.Default))
-            {
-                string line;
-                while ((line = sr.ReadLine()) != null)
-                {
-                    City[i] = line;
-                    i++;
-                }
-            }
-
-
-            StreamReader b = new StreamReader("C:/Users/prog/Desktop/Проект/Абоненты/id.txt");
-            i = 0;
-            while (!b.EndOfStream)
-            {
-                aid[i] = b.ReadLine();
-                i++;
-            }
-
+            var dp = new data_provider();
+            string aid = dp.get_rand("AID");
+            string City = dp.get_rand("City_name");
             Random rand = new Random();
-            return (t_Rings(aid[rand.Next(0, 150)], City[rand.Next(0, 322)], datetime(), rand.Next(1, 41).ToString()));
+            //select adding('A00040','Туапсе', '2020-10-15 19:59:29',32);
+            return (t_Rings(aid, City, datetime(), rand.Next(1, 41).ToString()));
         }
 
 

@@ -33,6 +33,7 @@ namespace Telephone_Ring
             using (var lo_conn = new NpgsqlConnection(_sConnStr))
             {
                 lo_conn.Open();
+                //преобразуем пароль для сравнения
                 using (var lo_cmd = new NpgsqlCommand(@"SELECT encode(@pass_byte, 'hex')", lo_conn))
                 {
                     lo_cmd.Parameters.AddWithValue("@pass_byte", pass);
@@ -40,7 +41,7 @@ namespace Telephone_Ring
                     pass_from_prog = Convert.ToString(lo_dr);
                 }
                 try
-                {
+                {//получим хеш пароля из бд, что получили по логину
                     using (var lo_cmd = new NpgsqlCommand(@"(SELECT pass from t_users where login =@login)", lo_conn))
                     {
                         lo_cmd.Parameters.AddWithValue("@login", login);
@@ -52,7 +53,7 @@ namespace Telephone_Ring
                 {
                     return false;
                 }
-            }
+            }//сравниваем полученные пароли
             if (pass_from_bd == pass_from_prog)
                 return true;
             else return false;
@@ -83,7 +84,7 @@ namespace Telephone_Ring
             return dt_Abon;
         }
 
-        public string abon_inn(string AID)
+        public string abon_inn(string AID) //получить ИНН по AID
         {
             string otvet = "";
             using (var lo_conn = new NpgsqlConnection(_sConnStr))
@@ -115,7 +116,7 @@ namespace Telephone_Ring
                     }
                     else
                     {
-                        // вызвать исключение и поймать его в пользовательском интерфейсе
+                        //исключение избыточно, т.к. до этого проверялось
                     }
                 }
             }
@@ -128,54 +129,54 @@ namespace Telephone_Ring
                 lo_conn.Open();
                 using (var lo_cmd = new NpgsqlCommand(comanda, lo_conn))
                 {
-                    var lo_dr = lo_cmd.ExecuteNonQuery();
-                }
-            }
-        }
-
-        public string get_id_abon(string iv_tab_name, string iv_pref)
-        {
-            string lv_id;
-            using (var lo_conn = new NpgsqlConnection(_sConnStr))
-            {
-                lo_conn.Open();
-                using (var lo_cmd = new NpgsqlCommand(@"get_id", lo_conn))
-                {
-                    lo_cmd.CommandType = System.Data.CommandType.StoredProcedure;
-                    lo_cmd.Parameters.AddWithValue("@iv_table_name", iv_tab_name);
-                    lo_cmd.Parameters.AddWithValue("@iv_column_name", "uid");
-                    lo_cmd.Parameters.AddWithValue("@iv_pref", iv_pref);
-                    lv_id = (string)lo_cmd.ExecuteScalar();
-
-                    // обработать исключение и поймать его в пользовательском интерфейсе
-                }
-            }
-            return lv_id;
-        }
-
-        public void reg_abon(ref Stack<string> inn, ref Stack<string> phone,ref Stack<string> address) //n -будущих записей
-        {
-            Random r = new Random();
-            //var lv_id = get_id_abon("t_Abonents", "A");
-                using (var lo_conn = new NpgsqlConnection(_sConnStr))
-                {
-                    lo_conn.Open();
-                    string lv_sql = @"insert into t_Abonents values (@AID, @inn, @phone, @address)";
-                    using (var lo_cmd = new NpgsqlCommand(lv_sql, lo_conn))
-                    {
-                    //fiewkogew - добавить get_id для t_Abonents
-                    lo_cmd.Parameters.AddWithValue("@AID", "A" + r.Next(1000).ToString());
-                    lo_cmd.Parameters.AddWithValue("@inn", inn.Pop().ToString());
-                    lo_cmd.Parameters.AddWithValue("@phone", phone.Pop().ToString());
-                    lo_cmd.Parameters.AddWithValue("@address", address.Pop().ToString());
                     if (lo_cmd.ExecuteNonQuery() != 1)
-                        {
-                            // вызвать исключение и поймать его в пользовательском интерфейсе
-                        }
+                    {
                     }
                 }
-
+            }
         }
+
+        public string get_rand(string parametr)
+        {
+            try
+            {
+                switch (parametr)
+                {
+                    case "AID":
+                        {
+                            string otvet = "";
+                            using (var lo_conn = new NpgsqlConnection(_sConnStr))
+                            {
+                                lo_conn.Open();
+                                using (var lo_cmd = new NpgsqlCommand(@"SELECT AID FROM t_Abonents ORDER BY RANDOM() LIMIT 1", lo_conn))
+                                {
+                                    otvet = (string)lo_cmd.ExecuteScalar();
+                                }
+                            }
+                            return otvet;
+                        }
+                    case "City_name":
+                        {
+                            string otvet = "";
+                            using (var lo_conn = new NpgsqlConnection(_sConnStr))
+                            {
+                                lo_conn.Open();
+                                using (var lo_cmd = new NpgsqlCommand(@"SELECT City_name FROM t_City ORDER BY RANDOM() LIMIT 1", lo_conn))
+                                {
+                                    otvet = (string)lo_cmd.ExecuteScalar();
+                                }
+                            }
+                            return otvet;
+                        }
+                    default:
+                        throw new Exception("Несуществующий запрос домена"); ;
+                }
+
+            }
+            catch { throw new Exception("Проблемы с бд t_City or t_Abonents"); }
+            
+        }
+
 
         public void delete()
         {
@@ -205,10 +206,6 @@ namespace Telephone_Ring
                     if (lo_dr.HasRows)
                     {
                         dtRings.Load(lo_dr);
-                    }
-                    else
-                    {
-                        // вызвать исключение и поймать его в пользовательском интерфейсе
                     }
                 }
             }

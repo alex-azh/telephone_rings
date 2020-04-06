@@ -25,14 +25,14 @@ namespace Telephone_Ring
             Abonents f2 = new Abonents();
             try
             {
-                var dtAbon_info = dp.info_abon(txt_inn.Text);
+                var dtAbon_info = dp.info_abon(txt_inn.Text); //загрузка данных абонента из t_Abonents
                 foreach (DataRow lo_row in dtAbon_info.Rows)
                 {
                     f2.txt_address.Text = Convert.ToString(lo_row["address"]);
                     f2.txt_inn.Text = Convert.ToString(lo_row["inn"]);
                     f2.txt_phone.Text = Convert.ToString(lo_row["phone"]);
                 }
-                var dtAbon_rings = dp.abon_rings(txt_inn.Text);
+                var dtAbon_rings = dp.abon_rings(txt_inn.Text);//исключения не нужно, т.к. абонент уже существует
                 foreach (DataRow lo_row in dtAbon_rings.Rows)
                 {
                     f2.tbl_abon_rings.Rows.Add(lo_row["City_name"], lo_row["datetime"], lo_row["minutes"], lo_row["time_of_day"], lo_row["sale"], lo_row["cost"]);
@@ -67,10 +67,10 @@ namespace Telephone_Ring
 
         private void detalization_Load(object sender, EventArgs e)
         {
+            //стилистические настройки
             label1.Parent = pictureBox1;
             label1.BackColor = Color.Transparent;
             btn_update_Click(null, null);
-
         }
 
         private void btn_delete_Click(object sender, EventArgs e)
@@ -83,10 +83,17 @@ namespace Telephone_Ring
         private void btn_ring_Click(object sender, EventArgs e)
         {
             var tg = new to_generate();
-            string a = tg.adding();
-            var dp = new data_provider();
-            dp.new_call(a);
-            btn_update_Click(null, null);
+            try
+            {
+                string a = tg.adding();
+                var dp = new data_provider();
+                dp.new_call(a);
+                btn_update_Click(null, null);
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Ошибка");
+            }
         }
     }
 }
