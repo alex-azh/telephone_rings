@@ -62,6 +62,27 @@ namespace Telephone_Ring
             label1.BackColor = Color.Transparent;
             label2.Parent = pictureBox1;
             label2.BackColor = Color.Transparent;
+            var dp = new data_provider();
+            try
+            {
+                if (dp.proverka_connect() == "Какая-то база данных пустая. Производится заполнение...")
+                {
+                    //вызвать функцию заполнения
+                }
+                else
+                {
+                    //всё в порядке
+                }
+            }catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Ошибка");
+                if(ex.Message== "Нет доступа к каким-то таблицам. Производится удаление всех данных и повторное заполнение.")
+                {
+                    //вызвать функцию заполнения
+                }
+            }
+
         }
+
     }
 }

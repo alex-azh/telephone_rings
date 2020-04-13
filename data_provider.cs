@@ -26,6 +26,45 @@ namespace Telephone_Ring
             byte[] bytes = Encoding.ASCII.GetBytes(raw_password);
             return DigestUtilities.CalculateDigest("GOST3411", bytes);
         }
+
+        public string proverka_connect()
+        {
+            int lv_users = 0, lv_Abonents = 0, lv_Rings = 0, lv_City = 0, lv_Sale = 0;
+            try{using (var lo_conn = new NpgsqlConnection(_sConnStr))  {lo_conn.Open();}}
+            catch
+            { throw new Exception("БД не удается найти. Неверный логин/пароль или нет доступа.");}
+            try
+            {
+                using (var lo_conn = new NpgsqlConnection(_sConnStr))
+                {
+                    lo_conn.Open();
+                    //преобразуем пароль для сравнения
+                    using (var lo_cmd = new NpgsqlCommand(@"SELECT count(*) from t_users", lo_conn))
+                    {
+                        lv_users = (int)lo_cmd.ExecuteScalar();
+                    }
+                    using (var lo_cmd = new NpgsqlCommand(@"SELECT count(*) from t_Abonents", lo_conn))
+                    {
+                        lv_Abonents = (int)lo_cmd.ExecuteScalar();
+                    }
+                    using (var lo_cmd = new NpgsqlCommand(@"SELECT count(*) from t_Rings", lo_conn))
+                    {
+                        lv_Rings = (int)lo_cmd.ExecuteScalar();
+                    }
+                    using (var lo_cmd = new NpgsqlCommand(@"SELECT count(*) from t_City", lo_conn))
+                    {
+                        lv_City = (int)lo_cmd.ExecuteScalar();
+                    }
+                    using (var lo_cmd = new NpgsqlCommand(@"SELECT count(*) from t_Sale", lo_conn))
+                    {
+                        lv_Sale = (int)lo_cmd.ExecuteScalar();
+                    }
+                    if (lv_Abonents != 0 && lv_Rings != 0 && lv_Sale != 0 && lv_users != 0 && lv_City != 0) return "ok";
+                    else return "Какая-то база данных пустая. Производится заполнение...";
+                }
+            }
+            catch { throw new Exception("Нет доступа к каким-то таблицам. Производится удаление всех данных и повторное заполнение."); }
+        }
         public bool authorization(string login, byte[] pass)
         {
 
