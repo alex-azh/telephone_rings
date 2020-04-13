@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Org.BouncyCastle.Security;
-
+using System.IO;
 
 namespace Telephone_Ring
 {
@@ -27,43 +27,81 @@ namespace Telephone_Ring
             return DigestUtilities.CalculateDigest("GOST3411", bytes);
         }
 
+        public void add_database()
+        {
+            string path = @"C:\console.sql";
+            string sql_req;
+
+                StreamReader sr = new StreamReader(path);
+                {
+                    sql_req =sr.ReadToEnd();
+                }
+            using (var lo_conn = new NpgsqlConnection(_sConnStr))
+            {
+                lo_conn.Open();
+                //преобразуем пароль для сравнения
+                using (var lo_cmd = new NpgsqlCommand(@sql_req, lo_conn))
+                {
+                    lo_cmd.ExecuteNonQuery();
+                }
+            }
+        }
         public string proverka_connect()
         {
             int lv_users = 0, lv_Abonents = 0, lv_Rings = 0, lv_City = 0, lv_Sale = 0;
-            try{using (var lo_conn = new NpgsqlConnection(_sConnStr))  {lo_conn.Open();}}
+            try { using (var lo_conn = new NpgsqlConnection(_sConnStr)) { lo_conn.Open(); } }
             catch
-            { throw new Exception("БД не удается найти. Неверный логин/пароль или нет доступа.");}
-            try
+            { throw new Exception("БД не удается найти. Неверный логин/пароль или нет доступа."); }
+
+            using (var lo_conn = new NpgsqlConnection(_sConnStr))
             {
-                using (var lo_conn = new NpgsqlConnection(_sConnStr))
+                lo_conn.Open();
+                //преобразуем пароль для сравнения
+                try
                 {
-                    lo_conn.Open();
-                    //преобразуем пароль для сравнения
-                    using (var lo_cmd = new NpgsqlCommand(@"SELECT count(*) from t_users", lo_conn))
+                    using (var lo_cmd = new NpgsqlCommand(@"SELECT count(*) from public.t_Users", lo_conn))
                     {
-                        lv_users = (int)lo_cmd.ExecuteScalar();
+                        lv_users = Convert.ToInt32(lo_cmd.ExecuteScalar());
                     }
-                    using (var lo_cmd = new NpgsqlCommand(@"SELECT count(*) from t_Abonents", lo_conn))
-                    {
-                        lv_Abonents = (int)lo_cmd.ExecuteScalar();
-                    }
-                    using (var lo_cmd = new NpgsqlCommand(@"SELECT count(*) from t_Rings", lo_conn))
-                    {
-                        lv_Rings = (int)lo_cmd.ExecuteScalar();
-                    }
-                    using (var lo_cmd = new NpgsqlCommand(@"SELECT count(*) from t_City", lo_conn))
-                    {
-                        lv_City = (int)lo_cmd.ExecuteScalar();
-                    }
-                    using (var lo_cmd = new NpgsqlCommand(@"SELECT count(*) from t_Sale", lo_conn))
-                    {
-                        lv_Sale = (int)lo_cmd.ExecuteScalar();
-                    }
-                    if (lv_Abonents != 0 && lv_Rings != 0 && lv_Sale != 0 && lv_users != 0 && lv_City != 0) return "ok";
-                    else return "Какая-то база данных пустая. Производится заполнение...";
                 }
+                catch { throw new Exception("Нет доступа к таблице t_users"); }
+
+                try
+                {
+                    using (var lo_cmd = new NpgsqlCommand(@"SELECT count(*) from public.t_Abonents", lo_conn))
+                    {
+                        lv_Abonents = Convert.ToInt32(lo_cmd.ExecuteScalar());
+                    }
+                }
+                catch { throw new Exception("Нет доступа к таблице t_Abonents"); }
+                try
+                {
+                    using (var lo_cmd = new NpgsqlCommand(@"SELECT count(*) from public.t_Rings", lo_conn))
+                    {
+                        lv_Rings = Convert.ToInt32(lo_cmd.ExecuteScalar());
+                    }
+                }
+                catch { throw new Exception("Нет доступа к таблице t_Rings"); }
+                try
+                {
+                    using (var lo_cmd = new NpgsqlCommand(@"SELECT count(*) from public.t_City", lo_conn))
+                    {
+                        lv_City = Convert.ToInt32(lo_cmd.ExecuteScalar());
+                    }
+                }
+                catch { throw new Exception("Нет доступа к таблице t_City"); }
+                try
+                {
+                    using (var lo_cmd = new NpgsqlCommand(@"SELECT count(*) from public.t_Sale", lo_conn))
+                    {
+                        lv_Sale = Convert.ToInt32(lo_cmd.ExecuteScalar());
+                    }
+                }
+                catch { throw new Exception("Нет доступа к таблице t_Sale"); }
+                if (lv_Abonents != 0 && lv_Sale != 0 && lv_users != 0 && lv_City != 0) return "ok";
+                else return "Какая-то база данных пустая. Производится заполнение...";
             }
-            catch { throw new Exception("Нет доступа к каким-то таблицам. Производится удаление всех данных и повторное заполнение."); }
+
         }
         public bool authorization(string login, byte[] pass)
         {

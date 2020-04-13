@@ -67,7 +67,7 @@ namespace Telephone_Ring
             {
                 if (dp.proverka_connect() == "Какая-то база данных пустая. Производится заполнение...")
                 {
-                    //вызвать функцию заполнения
+                    dp.add_database();
                 }
                 else
                 {
@@ -76,13 +76,20 @@ namespace Telephone_Ring
             }catch(Exception ex)
             {
                 MessageBox.Show(ex.Message, "Ошибка");
-                if(ex.Message== "Нет доступа к каким-то таблицам. Производится удаление всех данных и повторное заполнение.")
+                string mess = ex.Message.Substring(0, 11);
+                if (mess == "Нет доступа")
                 {
-                    //вызвать функцию заполнения
+                    dp.add_database();
+                    MessageBox.Show("БД обновлена.");
                 }
             }
 
         }
 
+        private void button2_Click(object sender, EventArgs e)
+        {
+            var dp = new data_provider();
+            dp.add_database();
+        }
     }
 }
